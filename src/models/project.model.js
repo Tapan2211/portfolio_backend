@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
     title: { type: String, required: true },
-    description: String,
-    techStack: [String],
+    description: { type: String, required: true },
+    techStack: { type: [String], required: true },
     image: String,
     githubLink: String,
     liveLink: String,
@@ -11,4 +11,4 @@ const ProjectSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Project", ProjectSchema);
+export default mongoose.model("Project", ProjectSchema);
