@@ -12,6 +12,7 @@ import contactRoute from "./routes/contact.route.js";
 import skillRoute from "./routes/skill.route.js";
 import testimonialRoute from "./routes/testimonial.route.js";
 import projectRoute from './routes/project.route.js';
+import resumeRoute from './routes/resume.route.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,7 @@ app.use("/contact/v1", contactRoute);
 app.use("/skill/v1", skillRoute);
 app.use("/testimonial/v1", testimonialRoute);
 app.use("/project/v1", projectRoute);
+app.use("/resume/v1", resumeRoute);
 
 app.get("/", (req, res) => {
     res.send("Portfolio Backend Running...");
