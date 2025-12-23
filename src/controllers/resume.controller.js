@@ -23,7 +23,7 @@ export const uploadResume = async (req, res) => {
 export const getAllResume = async (req, res) => {
     try {
         const resume = await getResume();
-        res.status(200).json(resume);
+        res.status(200).json({ resume });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
