@@ -28,7 +28,18 @@ export const createProjectP = async (req, res) => {
 export const getAllProjectsP = async (req, res) => {
     try {
         const project = await getAllProjects();
-        res.status(200).json(project);
+        if (!project || project.length === 0) {
+            return res.status(200).json({
+                message: "No projects found",
+                count: 0,
+                data: []
+            })
+        }
+        res.status(200).json({
+            message: "Projects fetched successfully",
+            count: project.length,
+            data: project
+        });
     } catch (error) {
         res.status(400).json({
             message: error.message

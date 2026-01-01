@@ -30,9 +30,17 @@ export const createTestimonials = async (req, res) => {
 export const getTestimonials = async (req, res) => {
     try {
         const testimonial = await getTestimonial();
+        if (!testimonial || !testimonial.length === 0) {
+            return res.status(200).json({
+                message: "No record found",
+                count: 0,
+                data: []
+            })
+        }
         res.status(200).json({
             message: "Testimonial data",
-            testimonial
+            count: testimonial.length,
+            data: testimonial
         });
     } catch (error) {
         res.status(400).json({ message: error.message });

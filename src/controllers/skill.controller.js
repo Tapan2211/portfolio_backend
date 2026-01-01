@@ -30,7 +30,18 @@ export const skillCreate = async (req, res) => {
 export const getAllSkills = async (req, res) => {
     try {
         const skills = await getSkills();
-        res.status(200).json(skills);
+        if (!skills || !skills.length === 0) {
+            return res.status(200).json({
+                message: "No record found",
+                count: 0,
+                data: []
+            })
+        }
+        res.status(200).json({
+            message: "Skills fetched successfully",
+            count: skills.length,
+            data: skills
+        });
     } catch (error) {
         res.status(400).json({
             message: error.message

@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import { createBlog, getAllBlogs, getBlogBySlug, updateBlogById, deleteBlogById } from "../services/blog.service.js";
 
+
 export const creatBlogController = async (req, res) => {
     try {
         const { title, content, tags } = req.body;
@@ -26,7 +27,18 @@ export const creatBlogController = async (req, res) => {
 export const getBlogsController = async (req, res) => {
     try {
         const blogs = await getAllBlogs();
-        res.status(200).json(blogs);
+        if (!blogs || !blogs.length === 0) {
+            return res.status(200).json({
+                message: "No blogs found",
+                count: 0,
+                blogs: []
+            });
+        }
+        res.status(200).json({
+            message: "Blogs fetched successfully",
+            count: blogs.length,
+            data: blogs
+        });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

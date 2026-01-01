@@ -17,7 +17,18 @@ export const submitContact = async (req, res) => {
 export const getMessages = async (req, res) => {
     try {
         const msg = await getAllMessage();
-        res.status(200).json(msg);
+        if (!msg || !msg.length === 0) {
+            return res.status(200).json({
+                message: "No record found",
+                count: 0,
+                data: []
+            })
+        }
+        res.status(200).json({
+            message: "Contacts fetched successfully",
+            count: msg.length,
+            data: msg
+        });
     } catch (error) {
         res.status(400).json({
             message: error.message
