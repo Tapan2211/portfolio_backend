@@ -1,15 +1,17 @@
 import Testimonial from "../models/testimonial.model.js";
 
 export const createTestimonial = async (data) => {
-    const { name, role, message, image } = data;
+    const { name, email, role, rate, message, image } = data;
 
-    if (!name || !role || !message || !image) {
+    if (!name || !email || !role || !rate || !message || !image) {
         throw new Error("All fields are required");
     }
 
     const Testimonials = Testimonial.create({
         name,
+        email,
         role,
+        rate,
         message,
         image
     });

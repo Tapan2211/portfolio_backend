@@ -2,9 +2,9 @@ import { createTestimonial, getTestimonial, deleteTestimonial } from "../service
 
 export const createTestimonials = async (req, res) => {
     try {
-        const { name, role, message } = req.body;
+        const { name, email, role, rate, message } = req.body;
 
-        if (!name || !role || !message || !req.file) {
+        if (!name || !email || !role || !rate || !message || !req.file) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -12,7 +12,9 @@ export const createTestimonials = async (req, res) => {
 
         const testimonial = await createTestimonial({
             name,
+            email,
             role,
+            rate,
             message,
             image: imageUrl
         })
