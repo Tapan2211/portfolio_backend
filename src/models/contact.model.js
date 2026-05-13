@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema({
@@ -9,6 +10,9 @@ const contactSchema = new mongoose.Schema({
     },
     message: {
         type: String, required: true
+    },
+    mobile: {
+        type: Number, required: true
     }
 },
     { timestamps: true });

@@ -1,16 +1,17 @@
 import Contact from '../models/contact.model.js';
 
 export const createMessage = async (data) => {
-    const { name, email, message } = data;
+    const { name, email, message, mobile } = data;
 
-    if (!name || !email || !message) {
+    if (!name || !email || !message || !mobile) {
         throw new Error("All fields are required");
     }
 
     const msg = await Contact.create({
         name,
         email,
-        message
+        message,
+        mobile
     });
 
     return msg;
