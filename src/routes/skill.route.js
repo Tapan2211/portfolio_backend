@@ -5,6 +5,7 @@ import { skillCreate, getAllSkills, skillDelete } from '../controllers/skill.con
 import { auth } from '../middleware/auth.middleware.js';
 const router = express.Router();
 
+// router.post('/create', auth, upload.single("image"), skillCreate);
 router.post('/create', auth, upload.single("image"), skillCreate);
 router.get('/', getAllSkills);
 router.delete('/:id', auth, skillDelete);

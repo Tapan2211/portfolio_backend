@@ -21,7 +21,7 @@ export const getSkills = async () => {
 }
 
 export const deleteSkills = async (id) => {
-    const skill = Skill.findByIdAndDelete(id);
+    const skill = await Skill.findByIdAndDelete(id);
     if (!skill) throw new Error("Skill not found")
     return skill;
 }
