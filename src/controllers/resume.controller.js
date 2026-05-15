@@ -2,13 +2,25 @@ import { createResume, getResume, deletResume } from "../services/resume.service
 
 export const uploadResume = async (req, res) => {
     try {
+        const { name, email } = req.body;
+
+        if (!name || !email) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
         if (!req.file) {
             return res.status(400).json({ message: "Resume file is required" });
         }
 
         const resumeUrl = `${req.protocol}://${req.get("host")}/uploads/resumes/${req.file.filename}`;
 
-        const resume = await createResume(resumeUrl);
+        // const resume = await createResume(resumeUrl);
+
+        const resume = await createResume({
+            name,
+            email,
+            resumeUrl
+        });
+
         res.status(201).json({
             message: "Resume upload successfully",
             resume
