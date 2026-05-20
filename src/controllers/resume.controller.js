@@ -36,7 +36,21 @@ export const getAllResume = async (req, res) => {
     try {
         const resume = await getResume();
 
-        res.status(200).json({ resume });
+        // res.status(200).json({ resume });
+
+
+        if (!resume || resume.length === 0) {
+            return res.status(200).json({
+                message: "No resume found",
+                count: 0,
+                data: []
+            })
+        }
+        res.status(200).json({
+            message: "Resume fetched successfully",
+            count: resume.length,
+            data: resume
+        });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
