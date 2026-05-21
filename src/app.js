@@ -14,8 +14,9 @@ import testimonialRoute from "./routes/testimonial.route.js";
 import projectRoute from './routes/project.route.js';
 import resumeRoute from './routes/resume.route.js'
 import analyticsRoute from './routes/analytics.route.js';
-import blogRouter from './routes/blog.route.js'
-import educationRoute from './routes/education.route.js'
+import blogRouter from './routes/blog.route.js';
+import educationRoute from './routes/education.route.js';
+import experienceRoute from './routes/experience.route.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,6 +43,7 @@ app.use("/api/resume/v1", resumeRoute);
 app.use("/api/analytics/v1", analyticsRoute);
 app.use("/api/blogs/v1", blogRouter);
 app.use("/api/education/v1", educationRoute);
+app.use("/api/experience/v1", experienceRoute);
 
 app.get("/", (req, res) => {
     res.send("Portfolio Backend Running...");
